@@ -24,13 +24,13 @@ import exam.util.json.JSONObject;
 
 /**
  * 用户登录
- * @author skywalker
+ * @author 
  *
  */
-@Controller
+@Controller//??
 public class LoginController {
 	
-	@Resource
+	@Resource//??
 	private ManagerService managerService;
 	@Resource
 	private TeacherService teacherService;
@@ -50,25 +50,38 @@ public class LoginController {
 	 * @param role 1-->> 学生 2-->> 教师 3--> 管理员
 	 */
 	@RequestMapping("/login/do")
-	public String doLogin(String username, String password, String verify, int role, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (!DataUtil.isValid(username, password) || !DataUtil.checkVerify(verify, session)) {
+	public String doLogin(String username, String password, String verify,  Model model, HttpServletRequest request) {//??
+		HttpSession session = request.getSession();//??
+		if (!DataUtil.isValid(username, password) || !DataUtil.checkVerify(verify, session)) {//？？
 			return "error";
 		}
-		if (role == 3) {
-			Manager manager=null;
-			System.out.println("role == 3");
-			try {
-				manager = managerService.login(username, StringUtil.md5(password));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		
-
-			System.out.println("manager");
+			Manager manager = managerService.login(username, StringUtil.md5(password));
 			if (manager == null) {
-				model.addAttribute("error", "用户名或密码错误");
-				return "login";
+				Teacher teacher = teacherService.login(username, password);
+				if (teacher == null) {
+					Student student = studentService.login(username, password);
+					if (student == null) {
+						model.addAttribute("error", "用户名或密码错误");
+						return "login";
+					}
+					student.setPassword(password);
+					//检测是否在别处登录
+					if (SessionContainer.loginStudents.containsKey(student.getId())) {
+						SessionContainer.loginStudents.get(student.getId()).setAttribute("force", Boolean.TRUE);
+					}
+					SessionContainer.loginStudents.put(student.getId(), session);
+					session.setAttribute("student", student);
+					return "redirect:/student/index";
+				}
+				teacher.setPassword(password);
+				//如果此账户已在别处登录
+				if (SessionContainer.loginTeachers.containsKey(teacher.getId())) {
+					SessionContainer.loginTeachers.get(teacher.getId()).setAttribute("force", Boolean.TRUE);
+				}
+				SessionContainer.loginTeachers.put(teacher.getId(), session);
+				session.setAttribute("teacher", teacher);
+				return "redirect:/teacher/index";
 			}
 			manager.setPassword(password);
 			//管理员账户已在别处登录，强迫之前登录的立即下线
@@ -77,45 +90,10 @@ public class LoginController {
 			}
 			SessionContainer.adminSession = session;
 			session.setAttribute("admin", manager);
-			System.out.println(manager);
 			return "redirect:/admin/index";
-		} else if (role == 2) {
-			Teacher teacher = teacherService.login(username, password);
-			if (teacher == null) {
-				model.addAttribute("error", "用户名或密码错误");
-				return "login";
-			}
-			teacher.setPassword(password);
-			//如果此账户已在别处登录
-			if (SessionContainer.loginTeachers.containsKey(teacher.getId())) {
-				SessionContainer.loginTeachers.get(teacher.getId()).setAttribute("force", Boolean.TRUE);
-			}
-			SessionContainer.loginTeachers.put(teacher.getId(), session);
-			session.setAttribute("teacher", teacher);
-			return "redirect:/teacher/index";
-		} else if (role == 1) {
-			Student student = null;
-			try {
-				student = studentService.login(username, password);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			if (student == null) {
-				model.addAttribute("error", "用户名或密码错误");
-				return "login";
-			}
-			student.setPassword(password);
-			//检测是否在别处登录
-			if (SessionContainer.loginStudents.containsKey(student.getId())) {
-				SessionContainer.loginStudents.get(student.getId()).setAttribute("force", Boolean.TRUE);
-			}
-			SessionContainer.loginStudents.put(student.getId(), session);
-			session.setAttribute("student", student);
-			return "redirect:/student/index";
-		}
-		return "";
-	}
+		} 
+	
+	
 	
 	/**
 	 * ajax请求检查验证码

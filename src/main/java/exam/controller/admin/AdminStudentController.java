@@ -58,10 +58,12 @@ public class AdminStudentController {
 	public void add(String id, String clazz, String name, HttpServletResponse response) {
 		JSON json = new JSONObject();
 		name = StringUtil.htmlEncode(name);
-		if(!DataUtil.isNumber(id, clazz)) {
+		if(!DataUtil.isNumber(clazz)) {
 			json.addElement("result", "0").addElement("message", "数据格式非法");
 		}else if(!DataUtil.isValid(name)) {
 			json.addElement("result", "0").addElement("message", "请输入学生姓名");
+		}else if(!DataUtil.isValid(id)) {
+			json.addElement("result", "0").addElement("message", "请输入学生学号");
 		}else {
 			studentService.saveStudent(id, name, StringUtil.md5("1234"), Integer.parseInt(clazz));
 			json.addElement("result", "1").addElement("message", "学生添加成功");

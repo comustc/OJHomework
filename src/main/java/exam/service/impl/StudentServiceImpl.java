@@ -67,7 +67,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 	
 	@Override
 	public Student login(String username, String password) {
-		String sql = studentDao.getSql() + " where s.name = '" + username + "' and s.password = '" + StringUtil.md5(password) + "'";
+		String sql = studentDao.getSql() + " where s.id = '" + username + "' and s.password = '" + StringUtil.md5(password) + "'";
 		List<Student> result = studentDao.queryBySQL(sql);
 		return DataUtil.isValid(result) ? result.get(0) : null;
 	}

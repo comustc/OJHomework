@@ -54,16 +54,6 @@ body {
 						</td>
 					</tr>
 					<tr>
-						<td>登录角色:</td>
-						<td><input id="radio_student" type="radio" name="role"
-							value="1" checked> <label for="radio_student">学生</label>
-							<input id="radio_teacher" type="radio" name="role" value="2">
-							<label for="radio_teacher">教师</label>
-							<input id="radio_manager" type="radio" name="role" value="3">
-							<label for="radio_manager">管理员</label>
-						</td>
-					</tr>
-					<tr>
 						<td colspan="2"><span class="error" id="login_error">&nbsp;${error}</span>
 						</td>
 					</tr>
