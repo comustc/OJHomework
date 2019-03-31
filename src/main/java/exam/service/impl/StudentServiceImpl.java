@@ -60,7 +60,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
 			//删除考试记录
 			"delete from examinationresult where sid = '" + id + "'",
 			//删除学生
-			"delete from student where id = '" + id + "'"
+			"delete from student where id = '" + id + "'",
 		};
 		studentDao.batchUpdate(sqls);
 	}

@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-<title>试卷</title>
+<title>作业</title>
 <meta charset="UTF-8">
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">

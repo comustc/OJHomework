@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-<title>考试结果</title>
+<title>作业结果</title>
 <meta charset="UTF-8">
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
@@ -29,7 +29,7 @@
 	<div class="main">
 		<div style="text-align: center;">
 			您的分数: <span style="color: red;">${view.point}</span>
-			&nbsp;&nbsp;考试时间: <span style="color: red;"><fmt:formatDate value="${view.time}" pattern="yyyy年MM月dd日"/></span>
+			&nbsp;&nbsp;完成时间: <span style="color: red;"><fmt:formatDate value="${view.time}" pattern="yyyy年MM月dd日"/></span>
 		</div>
 		<hr />
 		<div id="single-container">

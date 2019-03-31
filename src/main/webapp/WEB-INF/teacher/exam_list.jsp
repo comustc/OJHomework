@@ -3,26 +3,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	pageContext.setAttribute("basePath", basePath);
 %>
 <html>
 <head>
-<title>试卷</title>
+<title>作业</title>
 <meta charset="UTF-8">
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
 <link rel="BOOKMARK" href="images/icon.ico">
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<script src="script/checkbox.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/head.css">
 <link rel="stylesheet" type="text/css" href="css/list_main.css">
 <style type="text/css">
-	.exam-table {
-		width: 100%;
-		height: 50% !important;
-	}
+.exam-table {
+	width: 100%;
+	height: 50% !important;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="css/modal.css">
 </head>
@@ -36,9 +37,12 @@
 		<div class="list" id="exam-list">
 			<!--搜索框-->
 			<div class="search form-inline"></div>
+			<input type="button" onclick="delAllexam()" value="批量删除" />
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th><input type="checkbox" onclick="funcCheckAll()"
+							id="checkboxall"></th>
 						<th width="10%">id</th>
 						<th width="25%">标题</th>
 						<th width="20%">适用班级</th>
@@ -50,6 +54,9 @@
 				<tbody>
 					<c:forEach items="${pageBean.records}" var="exam">
 						<tr>
+							<td><input type="hidden" id="subcheck" name="ids" value="0" />
+								<input id="subcheck" type="checkbox" name="ids"
+								onclick="checkReturn(this)" value="${exam.id}"></input></td>
 							<td>${exam.id}</td>
 							<td>${exam.title}</td>
 							<td><button name="show-clazz-btn"
@@ -78,8 +85,8 @@
 								</c:otherwise>
 							</c:choose>
 							<td>
-								<!-- 保存试卷的时间限制 -->
-								<input type="hidden" name="limit" value="${exam.limit}" />
+								<!-- 保存作业的时间限制 --> <input type="hidden" name="limit"
+								value="${exam.limit}" />
 								<button class="btn btn-info btn-xs" name="show-edit-btn">编辑</button>
 								<button class="btn btn-danger btn-xs" name="delete-exam-btn">删除</button>
 							</td>
@@ -106,7 +113,8 @@
 	</div>
 
 	<!-- 适用班级的显示&编辑 -->
-	<div class="modal_window teacher_clazz_window form-control" id="clazz-show">
+	<div class="modal_window teacher_clazz_window form-control"
+		id="clazz-show">
 		<div class="modal_window_title">
 			适用班级: <img src="images/error.png" id="close-clazz-btn">
 		</div>
@@ -151,31 +159,24 @@
 			</tr>
 		</table>
 	</div>
-	<!-- 试卷编辑 -->
-	<div class="modal_window teacher_clazz_window form-control" id="exam-edit" style="height: 150px;width: 400px;">
+	<!-- 作业编辑 -->
+	<div class="modal_window teacher_clazz_window form-control"
+		id="exam-edit" style="height: 150px; width: 400px;">
 		<div class="modal_window_title" style="margin-bottom: 5px;">
-			试卷编辑: <img src="images/error.png" id="close-edit-btn">
+			作业编辑: <img src="images/error.png" id="close-edit-btn">
 		</div>
-		<hr style="margin-top: 5px;margin-bottom: 5px;" />
+		<hr style="margin-top: 5px; margin-bottom: 5px;" />
 		<div>
 			<table class="exam-table">
 				<tr>
-					<td width="20%">试卷题目:</td>
-					<td width="60%">
-						<input type="text" id="title-value" />
-					</td>
-					<td width="20">
-						<span class="error"></span>
-					</td>
+					<td width="20%">作业题目:</td>
+					<td width="60%"><input type="text" id="title-value" /></td>
+					<td width="20"><span class="error"></span></td>
 				</tr>
 				<tr>
 					<td>时间限制:</td>
-					<td>
-						<input type="text" id="limit-value" />
-					</td>
-					<td>
-						<span class="error"></span>
-					</td>
+					<td><input type="text" id="limit-value" /></td>
+					<td><span class="error"></span></td>
 				</tr>
 			</table>
 		</div>

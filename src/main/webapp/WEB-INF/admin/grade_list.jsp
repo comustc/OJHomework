@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	pageContext.setAttribute("basePath", basePath);
 %>
@@ -15,7 +14,9 @@
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
 <link rel="BOOKMARK" href="images/icon.ico">
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<script src="script/checkbox.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/head.css">
 <link rel="stylesheet" type="text/css" href="css/list_main.css">
 <link rel="stylesheet" type="text/css" href="css/modal.css">
@@ -30,19 +31,24 @@
 		<div class="list" id="grade_list">
 			<!--搜索框-->
 			<div class="search form-inline">
-				<form action="admin/grade/list" method="post" onsubmit="return search(this);">
-					<input type="text" class="form-control" name="search" style="width: 300px;">
-					&nbsp;&nbsp;
+				<form action="admin/grade/list" method="post"
+					onsubmit="return search(this);">
+					<input type="text" class="form-control" name="search"
+						style="width: 300px;"> &nbsp;&nbsp;
 					<button class="btn btn-default" type="submit">搜索</button>
 				</form>
 			</div>
 			<!--操作按钮-->
 			<div class="operation_btn">
-				<button class="btn btn-success btn-xs" onclick="toggleGradeAdd(true);">添加年级</button>
+				<button class="btn btn-success btn-xs"
+					onclick="toggleGradeAdd(true);">添加年级</button>
 			</div>
+			<input type="button" onclick="delAllgrade()" value="批量删除" />
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th><input type="checkbox" onclick="funcCheckAll()"
+							id="checkboxall"></th>
 						<th width="20%">id</th>
 						<th width="55%">年级</th>
 						<th width="25%">操作</th>
@@ -51,10 +57,14 @@
 				<tbody>
 					<c:forEach items="${pageBean.records}" var="grade">
 						<tr>
+							<td><input type="hidden" id="subcheck" name="ids" value="0" />
+								<input id="subcheck" type="checkbox" name="ids"
+								onclick="checkReturn(this)" value="${grade.id}"></input></td>
 							<td>${grade.id}</td>
 							<td>${grade.grade}</td>
 							<td>
-								<button class="btn btn-danger btn-xs" onclick="deleteGrade(this);">删除</button>
+								<button class="btn btn-danger btn-xs"
+									onclick="deleteGrade(this);">删除</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -68,20 +78,22 @@
 			<script type="text/javascript">
 				function page(pageCode) {
 					var search = document.getElementById("search_content").value;
-					window.location.href = "${pageContext.request.contextPath}/admin/grade/list?pn=" + pageCode + "&search=" + search;
+					window.location.href = "${pageContext.request.contextPath}/admin/grade/list?pn="
+							+ pageCode + "&search=" + search;
 				}
 			</script>
 			<jsp:include page="../share/page.jsp"></jsp:include>
 		</div>
 	</div>
-	
+
 	<!--年级添加-->
 	<div class="modal_window major_window form-control" id="grade_add">
 		<!--标题-->
 		<div class="modal_window_title">
 			添加年级: <img src="images/error.png" onclick="toggleGradeAdd(false);">
 		</div>
-		<form action="grade/add" method="post" onsubmit="return addGrade(this);">
+		<form action="grade/add" method="post"
+			onsubmit="return addGrade(this);">
 			<table>
 				<tr>
 					<td>年级名称:</td>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=GB2312"
+	pageEncoding="GB2312"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
@@ -10,8 +10,9 @@
 %>
 <html>
 <head>
-<title>å­¦ç”Ÿç®¡ç†</title>
-<meta charset="UTF-8">
+<title>Ñ§Éú¹ÜÀí</title>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
 <link rel="BOOKMARK" href="images/icon.ico">
@@ -21,32 +22,32 @@
 <link rel="stylesheet" type="text/css" href="css/modal.css">
 </head>
 <body>
-	<!--å¤´éƒ¨-->
+	<!--Í·²¿-->
 	<jsp:include page="share/head.jsp"></jsp:include>
 
-	<!--ä¸­é—´ä¸»ä½“éƒ¨åˆ†-->
+	<!--ÖĞ¼äÖ÷Ìå²¿·Ö-->
 	<div class="main">
-		<!--å­¦ç”Ÿ-->
+		<!--Ñ§Éú-->
 		<div class="list" id="student_list">
-			<!--æœç´¢æ¡†-->
+			<!--ËÑË÷¿ò-->
 			<div class="search form-inline">
 				<form action="admin/student/list" method="post" onsubmit="return searchStudent(this);">
 					<input type="text" class="form-control" name="search" style="width: 300px;">
 					&nbsp;&nbsp;
-					<button class="btn btn-default" type="submit">æœç´¢</button>
+					<button class="btn btn-default" type="submit">ËÑË÷</button>
 				</form>
 			</div>
-			<!--æ“ä½œæŒ‰é’®-->
+			<!--²Ù×÷°´Å¥-->
 			<div class="operation_btn">
-				<button class="btn btn-success btn-xs" onclick="toggleStudentAdd(true);">æ·»åŠ å­¦ç”Ÿ</button>
+				<button class="btn btn-success btn-xs" onclick="toggleStudentAdd(true);">Ìí¼ÓÑ§Éú</button>
 			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th width="15%">å­¦å·</th>
-						<th width="30">å­¦ç”Ÿå§“å</th>
-						<th width="40%">ç­çº§</th>
-						<th width="15%">æ“ä½œ</th>
+						<th width="15%">Ñ§ºÅ</th>
+						<th width="30">Ñ§ÉúĞÕÃû</th>
+						<th width="40%">°à¼¶</th>
+						<th width="15%">²Ù×÷</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,19 +55,19 @@
 						<tr>
 							<td>${student.id}</td>
 							<td>${student.name}</td>
-							<td>${student.clazz.grade.grade}çº§${student.clazz.major.name}${student.clazz.cno}ç­</td>
+							<td>${student.clazz.grade.grade}¼¶${student.clazz.major.name}${student.clazz.cno}°à</td>
 							<td>
-								<button class="btn btn-default btn-xs" onclick="toggleStudentEdit(true, this);">ç¼–è¾‘</button>
-								<button class="btn btn-danger btn-xs" onclick="deleteStudent(this);">åˆ é™¤</button>
+								<button class="btn btn-default btn-xs" onclick="toggleStudentEdit(true, this);">±à¼­</button>
+								<button class="btn btn-danger btn-xs" onclick="deleteStudent(this);">É¾³ı</button>
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		<!--åˆ†é¡µ-->
+		<!--·ÖÒ³-->
 		<div class="page">
-			<!-- ç”¨äºjavascriptæäº¤ï¼Œæœç´¢å†…å®¹ -->
+			<!-- ÓÃÓÚjavascriptÌá½»£¬ËÑË÷ÄÚÈİ -->
 			<input type="hidden" id="search_content" value="${search}">
 			<script type="text/javascript">
 				function page(pageCode) {
@@ -78,52 +79,52 @@
 		</div>
 	</div>
 	
-	<!--å­¦ç”Ÿæ·»åŠ -->
+	<!--Ñ§ÉúÌí¼Ó-->
 	<div class="modal_window student_window form-control" id="student_add">
-		<!--æ ‡é¢˜-->
+		<!--±êÌâ-->
 		<div class="modal_window_title">
-			æ·»åŠ å­¦ç”Ÿ: <img src="images/error.png" onclick="toggleStudentAdd(false);">
+			Ìí¼ÓÑ§Éú: <img src="images/error.png" onclick="toggleStudentAdd(false);">
 		</div>
 		<form action="admin/student/add" method="post" onsubmit="return addStudent(this);">
 			<table>
 				<tr>
-					<td>å­¦å·:</td>
+					<td>Ñ§ºÅ:</td>
 					<td>
 						<input type="text" name="id">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						å¹´çº§:
+						Äê¼¶:
 					</td>
 					<td>
 						<select name="grade" id="grade_select_add" onchange="changeMajor(this, true);">
-							<option value="0">å¹´çº§...</option>
+							<option value="0">Äê¼¶...</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						ä¸“ä¸š:
+						×¨Òµ:
 					</td>
 					<td>
 						<select id="major_select_add" name="major" onchange="changeClazz(this, true);">
-							<option value="0">ä¸“ä¸š...</option>
+							<option value="0">×¨Òµ...</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						ç­çº§:
+						°à¼¶:
 					</td>
 					<td>
 						<select id="clazz_select_add" name="clazz">
-							<option value="0">ç­çº§...</option>
+							<option value="0">°à¼¶...</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>å­¦ç”Ÿå§“å:</td>
+					<td>Ñ§ÉúĞÕÃû:</td>
 					<td><input type="text" name="student"></td>
 				</tr>
 				<tr style="text-align: center;">
@@ -131,53 +132,53 @@
 					</td>
 				</tr>
 				<tr style="text-align: center;">
-					<td colspan="2"><input type="submit" value="æäº¤"></td>
+					<td colspan="2"><input type="submit" value="Ìá½»"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
-	<!--å­¦ç”Ÿä¿®æ”¹-->
+	<!--Ñ§ÉúĞŞ¸Ä-->
 	<div class="modal_window student_window form-control" id="student_edit">
-		<!--æ ‡é¢˜-->
+		<!--±êÌâ-->
 		<div class="modal_window_title">
-			ç¼–è¾‘å­¦ç”Ÿ: <img src="images/error.png" onclick="toggleStudentEdit(false);">
+			±à¼­Ñ§Éú: <img src="images/error.png" onclick="toggleStudentEdit(false);">
 		</div>
 		<form action="" id="student_edit_form" method="post" onsubmit="return editStudent(this);">
-			<!--æäº¤è®°å½•id-->
+			<!--Ìá½»¼ÇÂ¼id-->
 			<input type="hidden" name="id" id="student_edit_id">
 			<table>
 				<tr>
 					<td>
-						å¹´çº§:
+						Äê¼¶:
 					</td>
 					<td>
 						<select name="grade" id="grade_select_edit" onchange="changeMajor(this, false);">
-							<option value="0">å¹´çº§...</option>
+							<option value="0">Äê¼¶...</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						ä¸“ä¸š:
+						×¨Òµ:
 					</td>
 					<td>
 						<select id="major_select_edit" name="major" onchange="changeClazz(this, false);">
-							<option value="0">ä¸“ä¸š...</option>
+							<option value="0">×¨Òµ...</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						ç­çº§:
+						°à¼¶:
 					</td>
 					<td>
 						<select id="clazz_select_edit" name="clazz">
-							<option value="0">ç­çº§...</option>
+							<option value="0">°à¼¶...</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td>å­¦ç”Ÿå§“å:</td>
+					<td>Ñ§ÉúĞÕÃû:</td>
 					<td><input type="text" name="student" id="student_edit_name"></td>
 				</tr>
 				<tr style="text-align: center;">
@@ -185,7 +186,7 @@
 					</td>
 				</tr>
 				<tr style="text-align: center;">
-					<td colspan="2"><input type="submit" value="æäº¤"></td>
+					<td colspan="2"><input type="submit" value="Ìá½»"></td>
 				</tr>
 			</table>
 		</form>
@@ -193,7 +194,7 @@
 </body>
 <script type="text/javascript" src="script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script src="script/admin/student.js"></script>
+<script src="script/admin/student.js">
 <script src="script/time.js"></script>
 <script src="script/tips.js"></script>
 </html>

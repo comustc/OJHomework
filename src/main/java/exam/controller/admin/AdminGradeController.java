@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import exam.dao.ClazzDao;
 import exam.model.Grade;
 import exam.model.page.PageBean;
 import exam.service.GradeService;
@@ -79,6 +80,6 @@ public class AdminGradeController {
 		gradeService.delete(gid);
 		json.addElement("result", "1").addElement("message", "删除成功");
 		DataUtil.writeJSON(json, response);
+		
 	}
-	
 }

@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="head">
 	<div class="head_logo">
-		<img src="images/logo.png"> <span class="logo_content">欢迎使用考试系统</span>
+		<img src="images/logo.jpg"> <span class="logo_content">欢迎在线作业管理系统</span>
 	</div>
 	<!--显示登录的用户-->
 	<div class="head_info">
@@ -34,7 +34,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> 试卷 <b class="caret"></b>
+						data-toggle="dropdown"> 作业 <b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="teacher/exam/list">列表</a></li>

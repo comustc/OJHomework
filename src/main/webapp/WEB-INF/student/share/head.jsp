@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="head">
 	<div class="head_logo">
-		<img src="images/logo.png"> <span class="logo_content">欢迎使用考试系统</span>
+		<img src="images/logo.jpg"> <span class="logo_content">欢迎使用在线作业管理系统</span>
 	</div>
 	<!--显示登录的用户-->
 	<div class="head_info">
@@ -33,8 +33,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="student/exam/list">参加考试</a></li>
-					<li><a href="student/notes">考试记录</a></li>
+					<li><a href="student/exam/list">参加作业</a></li>
+					<li><a href="student/notes">作业记录</a></li>
 					<li><a href="student/password">修改密码</a></li>
 					<li><a href="student/logout">退出系统</a></li>
 				</ul>

@@ -56,7 +56,16 @@ public class LoginController {
 			return "error";
 		}
 		if (role == 3) {
-			Manager manager = managerService.login(username, StringUtil.md5(password));
+			Manager manager=null;
+			System.out.println("role == 3");
+			try {
+				manager = managerService.login(username, StringUtil.md5(password));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+
+			System.out.println("manager");
 			if (manager == null) {
 				model.addAttribute("error", "用户名或密码错误");
 				return "login";
@@ -68,6 +77,7 @@ public class LoginController {
 			}
 			SessionContainer.adminSession = session;
 			session.setAttribute("admin", manager);
+			System.out.println(manager);
 			return "redirect:/admin/index";
 		} else if (role == 2) {
 			Teacher teacher = teacherService.login(username, password);
@@ -84,7 +94,13 @@ public class LoginController {
 			session.setAttribute("teacher", teacher);
 			return "redirect:/teacher/index";
 		} else if (role == 1) {
-			Student student = studentService.login(username, password);
+			Student student = null;
+			try {
+				student = studentService.login(username, password);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			if (student == null) {
 				model.addAttribute("error", "用户名或密码错误");
 				return "login";

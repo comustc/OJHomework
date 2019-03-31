@@ -10,7 +10,7 @@
 %>
 <html>
 <head>
-<title>参加考试</title>
+<title>参加作业</title>
 <meta charset="UTF-8">
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
@@ -27,7 +27,7 @@
 	<div class="main">
 		<!-- 时间限制以及倒计时 -->
 		<input type="hidden" id="time-limit" value="${exam.limit}" />
-		<!-- 此试卷的id -->
+		<!-- 此作业的id -->
 		<input type="hidden" id="exam-id" value="${eid}" />
 		<input type="hidden" id="context-path" value="<%=basePath %>" />
 		<div class="time">

@@ -18,8 +18,8 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	@Resource
 	private ManagerDao managerDao;
-
 	public Manager login(String name, String password) {
+		System.out.println(name+"    +"+password);
         String sql = "select * from manager where name = ? and password = ?";
         List<Manager> managers = managerDao.queryBySQL(sql, new Object[] {name, password});
         return DataUtil.isValid(managers) ? managers.get(0) : null;

@@ -10,6 +10,19 @@
 <base href="<%=basePath%>">
 <title>用户登录</title>
 <meta charset="utf-8">
+<style type="text/css">
+	.middle_login {
+	width: 400px;
+}
+
+html, body {
+	height: 100%;
+}
+body {
+	background: url(images/login/top1.jpg) no-repeat center center fixed;
+	background-size: 100%;
+}
+</style>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
 <link rel="BOOKMARK" href="images/icon.ico">
@@ -17,21 +30,13 @@
 <script src="script/login.js"></script>
 </head>
 <body>
+	<h1 style="display: block; text-align: center">在线作业管理系统</h1>
 	<!--顶部-->
-	<div class="top">
+	<div class="top" style="margin-left: 600px; margin-top: 200px;">
 		<img src="images/login/top.png">
 	</div>
-	<div class="middle">
-		<div class="middle_deco">
-			<table class="table">
-				<tr>
-					<td><img src="images/exam.png" class="login_exam"></td>
-					<td class="login_title">&nbsp;&nbsp;Exam System&nbsp;&nbsp;</td>
-				</tr>
-			</table>
-		</div>
 		<!--中间登录-->
-		<div class="middle_login">
+		<div class="middle_login" style="margin-left: 600px;">
 			<form action="login/do" method="post" onsubmit="return check(this);">
 				<table class="main_font login_table">
 					<tr>
@@ -70,10 +75,6 @@
 				</table>
 			</form>
 		</div>
-	</div>
-	<!--尾部-->
-	<div class="bottom">
-		<img src="images/login/bottom.png">
 	</div>
 </body>
 </html>

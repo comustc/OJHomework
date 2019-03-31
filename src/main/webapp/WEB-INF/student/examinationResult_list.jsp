@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-<title>考试记录</title>
+<title>作业记录</title>
 <meta charset="UTF-8">
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
@@ -27,11 +27,11 @@
 	<!--中间主体部分-->
 	<div class="main">
 		<table class="table table-bordered">
-			<caption>您的考试记录:</caption>
+			<caption>您的作业记录:</caption>
 			<thead>
 				<tr>
 					<th>id</th>
-					<th>试题名称</th>
+					<th>作业名称</th>
 					<th>考试分数</th>
 					<th>考试时间</th>
 				</tr>

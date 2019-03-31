@@ -15,6 +15,7 @@
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
 <link rel="BOOKMARK" href="images/icon.ico">
+<script src="script/checkbox.js"></script>
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/head.css">
 <link rel="stylesheet" type="text/css" href="css/list_main.css">
@@ -40,9 +41,12 @@
 			<div class="operation_btn">
 				<button class="btn btn-success btn-xs" onclick="toggleMajorAdd(true);">添加专业</button>
 			</div>
+			<input type="button" onclick="delAllmajor()" value="批量删除" />
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th><input type="checkbox" onclick="funcCheckAll()"
+							id="checkboxall"></th>
 						<th width="15%">id</th>
 						<th width="60%">专业名称</th>
 						<th width="20%">操作</th>
@@ -51,6 +55,9 @@
 				<tbody>
 					<c:forEach items="${pageBean.records}" var="major">
 						<tr>
+							<td><input type="hidden" id="subcheck" name="ids" value="0" />
+								<input id="subcheck" type="checkbox" name="ids"
+								onclick="checkReturn(this)" value="${major.id}"></input></td>
 							<td>${major.id}</td>
 							<td>${major.name}</td>
 							<td>

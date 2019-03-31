@@ -30,7 +30,7 @@
 	</div>
 	<!-- 图示 -->
 	<div id="charts" style="display: none;">
-		<!-- 试卷题目 -->
+		<!-- 作业题目 -->
 		<div id="exam-title"></div>
 		<hr>
 		<!-- 图片 -->

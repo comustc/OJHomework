@@ -10,7 +10,7 @@
 %>
 <html>
 <head>
-<title>试卷添加</title>
+<title>作业添加</title>
 <meta charset="UTF-8">
 <base href="<%=basePath%>">
 <link rel="SHORTCUT ICON" href="images/icon.ico">
@@ -169,11 +169,12 @@
 						<tr>
 							<td colspan="2"></td>
 							<td>选项D:</td>
-							<td><input type="text" name="multi_optionD" class="required"></td>
+							<td><input type="text" name="multi_optionD" class="required"></td> 
 							<td>
 								<span class="error"></span>
 							</td>
 						</tr>
+						
 						<tr>
 							<td colspan="2"></td>
 							<td>答案:</td>
@@ -269,7 +270,7 @@
 			<div class="title">选项设置:</div>
 			<table class="setting_table">
 				<tr>
-					<td>试卷题目:</td>
+					<td>作业题目:</td>
 					<td>
 						<input class="required" type="text" name="exam_title"></input>
 					</td>

@@ -2,6 +2,7 @@
  * [[删除单个元素]]
  * @param {[[DOM]]} btn [[触发此函数的按钮]]
  */
+
 function deleteStudent(btn) {
 	var id = $(btn).parents("tr").find("td:first").html();
 	if(confirm("这会导致相应的班级及学生被删除,您确定?")) {

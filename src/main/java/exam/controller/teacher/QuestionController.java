@@ -157,9 +157,9 @@ public class QuestionController {
 	@ResponseBody
 	public void delete(@PathVariable("id") Integer id, HttpServletResponse response) {
 		JSONObject json = new JSONObject();
-		//首先检查此题是否被试卷引用
+		//首先检查此题是否被作业引用
 		if (questionService.isUsedByExam(id)) {
-			json.addElement("result", "0").addElement("message", "此题目被试卷引用，无法删除");
+			json.addElement("result", "0").addElement("message", "此题目被作业引用，无法删除");
 		} else {
 			questionService.delete(id);
 			json.addElement("result", "1").addElement("message", "删除成功");
@@ -228,7 +228,7 @@ public class QuestionController {
 			json.addElement("result", "0").addElement("messgae", "参数非法");
 		} else {
 			Double rate = questionService.articulationScore(qid);
-			json.addElement("result", "1").addElement("rate", rate == null ? "无考试记录!" : (rate * 100) + "%");
+			json.addElement("result", "1").addElement("rate", rate == null ? "无答题记录!" : (rate * 100) + "%");
 		}
 		DataUtil.writeJSON(json, response);
 	}

@@ -24,7 +24,6 @@
 <body>
 	<!--头部-->
 	<jsp:include page="share/head.jsp"></jsp:include>
-
 	<!--中间主体部分-->
 	<div class="main">
 		<div class="welcome">请点击相应的选项进行操作</div>

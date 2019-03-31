@@ -14,5 +14,5 @@ function _cur_time() {
 	var year = date.getFullYear();
 	var month = date.getMonth() + 1;
 	var day = date.getDate();
-	ele.innerHTML = year + "年" + month + "月" + day + "日";
+	ele.innerHTML = year + "/" + month + "/" + day + "/";
 }
